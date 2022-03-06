@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    background-image: linear-gradient(to right, #605e7e, #6b73c1, #37b3cc);
+}
+
+.container-title {
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: 25% 5%;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.input-title {
+    min-height: 50px;
+    padding: 0 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    border-color: #333;
+}
+
+.input-title:focus {
+    outline: none;
+}
+
+.todotitle {
+    font-size: 20px;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.inputcol {
+    display: grid;
+    column-gap: 2px;
+    grid-template-columns: 60% 10%;
+    min-height: 50px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.input {
+    border-radius: 10px;
+    border-color: #333;
+    font-size: 20px;
+    padding: 0 10px;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.buttoninput {
+    border-radius: 10px;
+    border-color: #333;
+    background-color: white;
+    font-size: 20px;
+}
+
+.buttoninput:hover {
+    background-color: #8f8acc;
+    color: white;
+}
+
+.todolist {
+    margin-top: 20px;
+}
+
+.itemall {
+    display: grid;
+    grid-template-columns: 60% 5% 5%;
+    justify-content: center;
+    margin-bottom: 2px;
+}
+
+.item {
+    background-color: white;
+    min-height: 50px;
+    word-wrap: break-word;
+    word-break: break-all;
+    border-radius: 10px 0 0 10px;
+    border-color: #333;
+    font-size: 20px;
+    display: grid;
+    align-content: center;
+    padding: 10px 10px;
+}
+
+.check-button, .trash-button {
+    min-height: 50px;
+    background-color: white;
+    border: none;
+    font-size: 15px;
+}
+
+.trash-button {
+    border-radius: 0 10px 10px 0;
+}
+
+.check-button:hover {
+    background-color: #37b3cc;
+    color: white;
+}
+
+.trash-button:hover {
+    background-color: #6b73c1;
+    color: white;
+}
+
+.checklist {
+    text-decoration: line-through;
+}
+
+.fa-check, .fa-trash {
+    pointer-events: none;
+}
