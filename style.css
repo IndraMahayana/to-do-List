@@ -67,6 +67,7 @@ body {
   border-color: #333;
   background-color: white;
   font-size: 20px;
+  width: 60px;
 }
 
 .buttoninput:hover {
@@ -76,25 +77,36 @@ body {
 
 .todolist {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.todolist h2 {
+  color: black;
+  font-size: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
+.hidden {
+  opacity: 0;
+}
 .itemall {
-  display: grid;
-  grid-template-columns: 60% 5% 5%;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  margin-bottom: 2px;
+  gap: 2px;
+  margin-bottom: 5px;
 }
 
 .item {
   background-color: white;
-  min-height: 50px;
-  word-wrap: break-word;
-  word-break: break-all;
+  width: 40vw;
+  margin-left: -40px;
   border-radius: 10px 0 0 10px;
   border-color: #333;
   font-size: 20px;
-  display: grid;
-  align-content: center;
   padding: 10px 10px;
 }
 
@@ -103,6 +115,7 @@ body {
   min-height: 50px;
   background-color: white;
   border: none;
+  width: 50px;
   font-size: 15px;
 }
 
