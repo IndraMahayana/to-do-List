@@ -1,10 +1,14 @@
-const inputtdl = document.querySelector('.input')
+const inputtdl = document.querySelector('.textarea')
 const buttontdl = document.querySelector('.buttoninput')
 const listtdl = document.querySelector('.todolist')
 
 function clickButton(e) {
     e.preventDefault()
+    addTodo()
+}
 
+// adding todoList
+function addTodo() {
     const itemall = document.createElement('div')
     itemall.classList.add('itemall')
 
@@ -13,15 +17,15 @@ function clickButton(e) {
     item.innerText = inputtdl.value
     itemall.appendChild(item)
 
-    if ( inputtdl.value === '' ) return
+    if (inputtdl.value === '') return
 
     const checkbutton = document.createElement("button")
-    checkbutton.innerHTML = '<i class="fa-solid fa-check"></i>' 
+    checkbutton.innerHTML = '<i class="fa-solid fa-check"></i>'
     checkbutton.classList.add("check-button")
     itemall.appendChild(checkbutton)
 
     const trashbutton = document.createElement("button")
-    trashbutton.innerHTML = '<i class="fa-solid fa-trash"></i>' 
+    trashbutton.innerHTML = '<i class="fa-solid fa-trash"></i>'
     trashbutton.classList.add("trash-button")
     itemall.appendChild(trashbutton)
 
@@ -29,15 +33,18 @@ function clickButton(e) {
     inputtdl.value = ''
 }
 
+// checking and delete todoList 
 function okdel(e) {
     const item = e.target
 
-    if ( item.classList[0] === 'check-button') {
+    // check
+    if (item.classList[0] === 'check-button') {
         const todolist = item.parentElement
         todolist.classList.toggle('checklist')
     }
 
-    if ( item.classList[0] === 'trash-button') {
+    // delete
+    if (item.classList[0] === 'trash-button') {
         const todolist = item.parentElement
         todolist.remove()
     }
