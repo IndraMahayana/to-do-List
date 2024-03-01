@@ -23,7 +23,7 @@ function addTodo() {
     checkbutton.innerHTML = '<i class="fa-solid fa-check"></i>'
     checkbutton.classList.add("check-button")
     itemall.appendChild(checkbutton)
-
+    saveData()
     const trashbutton = document.createElement("button")
     trashbutton.innerHTML = '<i class="fa-solid fa-trash"></i>'
     trashbutton.classList.add("trash-button")
@@ -31,6 +31,7 @@ function addTodo() {
 
     listtdl.appendChild(itemall)
     inputtdl.value = ''
+    saveData()
 }
 
 // checking and delete todoList 
@@ -52,3 +53,19 @@ function okdel(e) {
 
 buttontdl.addEventListener('click', clickButton)
 listtdl.addEventListener('click', okdel)
+
+inputtdl.addEventListener('onkeypress', (e)=>{
+    if(e.key === 'Enter'){
+        addTodo()
+        
+    }
+})
+
+function saveData(){
+    localStorage.setItem('data',listtdl.innerHTML)
+};
+
+function showdata(){
+    listtdl.innerHTML = localStorage.getItem('data')
+};
+showdata();
