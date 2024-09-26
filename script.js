@@ -19,46 +19,26 @@ function clickButton(e) {
 function addTodo() {
     if (inputtdl.value === '') return;
 
-    const itemall = document.createElement('div');
-    itemall.classList.add('itemall');
+    const todo = {
+        text: inputtdl.value,
+        id: Date.now()
+    };
 
-    const item = document.createElement('p');
-    item.classList.add('item');
-    item.innerText = inputtdl.value;
-    itemall.appendChild(item); 
+    createTodoElement(todo);
+    saveTodoList(todo);
 
-    const checkbutton = document.createElement("button");
-    checkbutton.innerHTML = '<i class="fa-solid fa-check"></i>';
-    checkbutton.classList.add("check-button");
-    itemall.appendChild(checkbutton); 
-
-    const trashbutton = document.createElement("button");
-    trashbutton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-    trashbutton.classList.add("trash-button");
-    itemall.appendChild(trashbutton); 
-
-    listtdl.appendChild(itemall);
     inputtdl.value = '';
-
-    saveTodoList(item.innerText);
-}
-
-// Function to load todos from localStorage
-function loadTodoLists() {
-    const todos = getTodosFromStorage();
-    todos.forEach(todo => {
-        createTodoElement(todo);
-    });
 }
 
 // Function to create todo element and append to list
 function createTodoElement(todo) {
     const itemall = document.createElement('div');
     itemall.classList.add('itemall');
+    itemall.setAttribute('data-id', todo.id);
 
     const item = document.createElement('p');
     item.classList.add('item');
-    item.innerText = todo;
+    item.innerText = todo.text;
     itemall.appendChild(item);
 
     const checkbutton = document.createElement("button");
@@ -74,16 +54,24 @@ function createTodoElement(todo) {
     listtdl.appendChild(itemall);
 }
 
-// Function to retrieve todos from localStorage
-function getTodosFromStorage() {
-    return JSON.parse(localStorage.getItem('todos')) || [];
-}
-
 // Function to save todo list to localStorage
 function saveTodoList(todo) {
     const todos = getTodosFromStorage();
     todos.push(todo);
-    localStorage.setItem('todos', JSON.stringify(todos))
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+// Function to load todos from localStorage
+function loadTodoLists() {
+    const todos = getTodosFromStorage();
+    todos.forEach(todo => {
+        createTodoElement(todo);
+    });
+}
+
+// Function to retrieve todos from localStorage
+function getTodosFromStorage() {
+    return JSON.parse(localStorage.getItem('todos')) || [];
 }
 
 // Function to handle checking and deleting todo items
@@ -99,15 +87,15 @@ function okdel(e) {
     // Delete functionality
     if (item.classList[0] === 'trash-button') {
         const todolist = item.parentElement;
-        const todoText = todolist.querySelector('.item').innerText;
+        const todoId = todolist.getAttribute('data-id');
         todolist.remove();
-        removeTodoFromStorage(todoText);
+        removeTodoFromStorage(todoId);
     }
 }
 
 // Function to remove todo list from local storage
-function removeTodoFromStorage(todo) {
+function removeTodoFromStorage(todoId) {
     const todos = getTodosFromStorage();
-    const updatedTodos = todos.filter(t => t !== todo);
+    const updatedTodos = todos.filter(todo => todo.id != todoId);
     localStorage.setItem('todos', JSON.stringify(updatedTodos));
 }
